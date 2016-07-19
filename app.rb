@@ -1,16 +1,15 @@
 require "./dependencies"
 
-class MyFavoriteWeatherAppEver < Sinatra::Base
+class RepoApp < Sinatra::Base
 
   get "/" do
-    zip_code = params["zip"]
-
-    ERB.new(File.read("./views/homepage.html.erb")).result(binding)
+    user = params["username"]
+    ERB.new(File.read("./repo_page.html.erb")).result(binding)
   end
 
 
-  get "/cool.css" do
-    File.read("./assets/css/styles.css")
+  get "/some.css" do
+    File.read("./repocss.css")
   end
 
   post "/get_weather" do
@@ -18,7 +17,7 @@ class MyFavoriteWeatherAppEver < Sinatra::Base
 
     weather = WeatherClient.new(zip_code).return_current_weather
 
-    ERB.new(File.read("./views/homepage.html.erb")).result(binding)
+    ERB.new(File.read("./repo_page.html.erb")).result(binding)
   end
 
 

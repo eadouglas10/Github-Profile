@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/some.css" media="screen" title="no title" charset="utf-8">
+  </head>
+
+  <body class='russell-tears'>
+    <h1>WEATHER'R us</h1>
+
+    <p>The weather in <%= zip_code %> is <%= weather %></p>
+
+    <p>And russell is crying</p>
+
+    <form action="/get_weather" method="post">
+      <input type="text" name="zip" value="">
+      <input type="submit" name="submit_button" value="Go">
+    </form>
+
+  </body>
+</html>
