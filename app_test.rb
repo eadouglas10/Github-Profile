@@ -1,7 +1,10 @@
+
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'rack/test'
 require './app'
+require 'pry'
 
 class AppTest < Minitest::Test
 
@@ -17,7 +20,8 @@ class AppTest < Minitest::Test
 
   def test_root
     response = get("/")
-    assert_equal "Enter a Github username", response.body
+    binding.pry
+    assert_includes response.body, "Find the repos!"
   end
 
 end

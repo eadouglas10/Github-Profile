@@ -4,14 +4,17 @@
   </head>
 
   <body class='russell-tears'>
-    <h1>WEATHER'R us</h1>
+    <h1>Find the repos!</h1>
+    <h3>Enter a username</h3>
 
-    <p>The weather in <%= zip_code %> is <%= weather %></p>
 
-    <p>And russell is crying</p>
 
-    <form action="/get_weather" method="post">
-      <input type="text" name="zip" value="">
+
+    <p>The name of the first repo is <%= repo_list[0] %></p>
+
+
+    <form action="/get_repository" method="post">
+      <input type="text" name="username" value="">
       <input type="submit" name="submit_button" value="Go">
     </form>
 

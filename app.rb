@@ -4,6 +4,7 @@ class RepoApp < Sinatra::Base
 
   get "/" do
     user = params["username"]
+    repo_list = []
     ERB.new(File.read("./repo_page.html.erb")).result(binding)
   end
 
@@ -12,14 +13,24 @@ class RepoApp < Sinatra::Base
     File.read("./repocss.css")
   end
 
-  post "/get_weather" do
-    zip_code = params["zip"]
+  get "/other.css" do
+    File.read("./repo_list.css")
+  end
 
-    weather = WeatherClient.new(zip_code).return_current_weather
+  post "/get_repository" do
+    user = params["username"]
 
-    ERB.new(File.read("./repo_page.html.erb")).result(binding)
+    repo_list = RepoClient.new(user).list_repos
+
+    ERB.new(File.read("./repo_list_page.html.erb")).result(binding)
   end
 
 
   run! if app_file == $PROGRAM_NAME
 end
+
+
+
+
+#<p>The weather in <%= zip_code %> is <%= weather %></p>
+#<p>The name of the first repo is <%= repo_list[0] %></p>

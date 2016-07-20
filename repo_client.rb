@@ -1,22 +1,27 @@
 require 'httparty'
 require 'pry'
 
-class WeatherClient
+class RepoClient
   include HTTParty
-  base_uri 'api.wunderground.com/api/6fb454176eef8ba8'
+  base_uri 'api.github.com/users'
 
-  def initialize(zip_code)
-    @zip_code = zip_code
+  def initialize(user)
+    @username = user
   end
 
   #http://api.wunderground.com/api/6fb454176eef8ba8/geolookup/q/20854.json
-  def get_zip_code_weather
-    self.class.get("/forecast/q/#{@zip_code}.json")
+  def get_repos
+    self.class.get("/#{@username}/repos")
   end
 
-  def return_current_weather
-    result = get_zip_code_weather
-
-    result["forecast"]["txt_forecast"]["forecastday"][0]["fcttext"]
+  def list_repos
+    repos = []
+    get_repos.each do |name|
+      repos << name["name"]
+    end
+    repos
   end
 end
+
+#erik = RepoClient.new("eadouglas10")
+#binding.pry
